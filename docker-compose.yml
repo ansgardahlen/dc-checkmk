@@ -1,0 +1,17 @@
+version: '2.1'
+services:
+  checkmk:
+    image: rockaut/check_mk-server
+    container_name: dc-checkmk
+    stdin_open: true
+    tty: true
+#    ports:
+#      - "5000:5000"
+    volumes:
+      - ./data/check_mk/sites:/opt/omd/sites:rw
+    environment:
+      - VIRTUAL_HOST=${CHECKMK_HOSTNAME}
+      - VIRTUAL_PORT=${HTTP_PORT:-5000}
+      - LETSENCRYPT_HOST=${CHECKMK_HOSTNAME}
+      - LETSENCRYPT_EMAIL=${CHECKMK_ADMIN_MAIL}
+
