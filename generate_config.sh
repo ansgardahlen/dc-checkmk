@@ -12,12 +12,12 @@ if [[ -f checkmk.conf ]]; then
   esac
 fi
 
-if [ -z "$CHECKMK_HOSTNAME" ]; then
-  read -p "Hostname (FQDN): " -ei "checkmk.example.org" CHECKMK_HOSTNAME
+if [ -z "$PUBLIC_FQDN" ]; then
+  read -p "Hostname (FQDN): " -ei "checkmk.example.org" PUBLIC_FQDN
 fi
 
-if [ -z "$CHECKMK_ADMIN_MAIL" ]; then
-  read -p "CheckMK admin Mail address: " -ei "mail@example.com" CHECKMK_ADMIN_MAIL
+if [ -z "$ADMIN_MAIL" ]; then
+  read -p "CheckMK admin Mail address: " -ei "mail@example.com" ADMIN_MAIL
 fi
 
 [[ -f /etc/timezone ]] && TZ=$(cat /etc/timezone)
@@ -30,13 +30,13 @@ cat << EOF > checkmk.conf
 # checkmk web ui configuration
 # ------------------------------
 # example.org is _not_ a valid hostname, use a fqdn here.
-CHECKMK_HOSTNAME=${CHECKMK_HOSTNAME}
+PUBLIC_FQDN=${PUBLIC_FQDN}
 
 # ------------------------------
 # CHECKMK admin user
 # ------------------------------
 CHECKMK_ADMIN=checkmkadmin
-CHECKMK_ADMIN_MAIL=${CHECKMK_ADMIN_MAIL}
+ADMIN_MAIL=${ADMIN_MAIL}
 CHECKMK_PASS=$(</dev/urandom tr -dc A-Za-z0-9 | head -c 28)
 
 # ------------------------------
