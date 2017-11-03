@@ -53,5 +53,7 @@ TZ=${TZ}
 # Fixed project name
 COMPOSE_PROJECT_NAME=checkmk
 
+SITENAME=cmk
+
 EOF
 
